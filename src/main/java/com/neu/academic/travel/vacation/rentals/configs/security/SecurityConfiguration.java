@@ -28,18 +28,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/api/*","/bower_components/**", "/*.js",
+			.antMatchers("/api/*","/bower_components/**", "/*.js",
 						"/*.jsx", "/main.css").permitAll()
-				.anyRequest().authenticated()
-				.and()
+			.anyRequest().authenticated()
+			.and()
 			.formLogin()
-				.defaultSuccessUrl("/", true)
-				.permitAll()
-				.and()
+			.defaultSuccessUrl("/", true)
+			.permitAll()
+			.and()
 			.httpBasic()
-				.and()
+			.and()
 			.csrf().disable()
 			.logout()
-				.logoutSuccessUrl("/");
+			.logoutSuccessUrl("/")
+			.and()
+			.requiresChannel()
+			.requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
+			.requiresSecure();
 	}
 }
