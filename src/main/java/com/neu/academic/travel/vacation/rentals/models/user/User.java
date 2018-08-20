@@ -1,10 +1,12 @@
 package com.neu.academic.travel.vacation.rentals.models.user;
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -18,6 +20,16 @@ public class User {
 	private String email;
 	private String address;
 	private Date dateOfBirth;
+	
+	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
+	private LoginDetails credentials;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -47,5 +59,12 @@ public class User {
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
-	}	
+	}
+	public LoginDetails getCredentials() {
+		return credentials;
+	}
+	public void setCredentials(LoginDetails credentials) {
+		credentials.setUser(this);
+		this.credentials = credentials;
+	}
 }
