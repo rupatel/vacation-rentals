@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -12,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class LoginDetails {
-	public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+
 	private String[] roles;
 	
 	@Id
@@ -44,7 +45,7 @@ public class LoginDetails {
 
 	@JsonProperty
 	public void setPassword(String password) {
-		this.password = PASSWORD_ENCODER.encode(password);
+		this.password = password;
 	}
 	public User getUser() {
 		return user;

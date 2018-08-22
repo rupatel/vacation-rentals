@@ -3,7 +3,6 @@ package com.neu.academic.travel.vacation.rentals.repositories.user;
 import org.springframework.data.repository.Repository;
 
 import com.neu.academic.travel.vacation.rentals.models.user.LoginDetails;
-import com.neu.academic.travel.vacation.rentals.models.user.User;
 
 @org.springframework.stereotype.Repository
 public interface LoginDetailsRepository extends Repository<LoginDetails,Long> {
