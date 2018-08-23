@@ -2,11 +2,13 @@ package com.neu.academic.travel.vacation.rentals.configs.security;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.EXPIRATION_TIME;
-import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.HEADER_STRING;
+import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.AUTHORIZATION_HEADER_STRING;
+import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.TOKEN_EXPIRATION_HEADER_STRING;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.SECRET;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.TOKEN_PREFIX;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.FilterChain;
@@ -47,7 +49,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            creds.getUserName(),
+                            creds.getUsername(),
                             creds.getPassword(),
                             AuthorityUtils.createAuthorityList(creds.getRoles()))
             );
@@ -66,10 +68,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withSubject(((User) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
-        res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        res.addHeader(AUTHORIZATION_HEADER_STRING, TOKEN_PREFIX + token);
+        res.addDateHeader(TOKEN_EXPIRATION_HEADER_STRING,  EXPIRATION_TIME);
         ObjectMapper mapper = new ObjectMapper();
         com.neu.academic.travel.vacation.rentals.models.user.User user = 
-        		credRepo.findByUserName(((User) auth.getPrincipal()).getUsername()).getUser();
+        		credRepo.findByUsername(((User) auth.getPrincipal()).getUsername()).getUser();
         res.getOutputStream().write(mapper.writeValueAsBytes(user));
     }
 }

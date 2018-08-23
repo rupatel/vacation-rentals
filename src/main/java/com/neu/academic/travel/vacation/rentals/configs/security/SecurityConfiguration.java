@@ -1,7 +1,8 @@
 package com.neu.academic.travel.vacation.rentals.configs.security;
 
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.SIGN_UP_URL;
-
+import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.ADD_USER_SERVICE;
+import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.LOGIN_URL;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -35,7 +36,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
-        .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+        .antMatchers(HttpMethod.POST, ADD_USER_SERVICE,"/login").permitAll()
+        .antMatchers(HttpMethod.GET, LOGIN_URL,SIGN_UP_URL,
+        		"/","/login","/built/**","/css/**", "/js/**", "/images/**")
+        .permitAll()
         .anyRequest().authenticated()
         .and()
         .addFilter(new JWTAuthenticationFilter(authenticationManager(),getApplicationContext()))

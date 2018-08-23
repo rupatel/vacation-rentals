@@ -18,8 +18,8 @@ public class LoginUserDetailsService implements UserDetailsService{
 	}
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		LoginDetails credentials = this.repository.findByUserName(username);
-		return new User(credentials.getUserName(),credentials.getPassword(), 
+		LoginDetails credentials = this.repository.findByUsername(username);
+		return new User(credentials.getUsername(),credentials.getPassword(), 
 				AuthorityUtils.createAuthorityList(credentials.getRoles()));
 	}
 }

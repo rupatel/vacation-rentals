@@ -17,7 +17,7 @@ public class LoginDetails {
 	private String[] roles;
 	
 	@Id
-	private String userName;
+	private String username;
 	
 	private String password;
 	
@@ -31,11 +31,11 @@ public class LoginDetails {
 	public void setRoles(String[] roles) {
 		this.roles = roles;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 
 	@JsonIgnore

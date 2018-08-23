@@ -1,6 +1,6 @@
 package com.neu.academic.travel.vacation.rentals.configs.security;
 
-import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.HEADER_STRING;
+import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.AUTHORIZATION_HEADER_STRING;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.SECRET;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.TOKEN_PREFIX;
 
@@ -30,7 +30,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter  {
     protected void doFilterInternal(HttpServletRequest req,
                                     HttpServletResponse res,
                                     FilterChain chain) throws IOException, ServletException {
-        String header = req.getHeader(HEADER_STRING);
+        String header = req.getHeader(AUTHORIZATION_HEADER_STRING);
 
         if (header == null || !header.startsWith(TOKEN_PREFIX)) {
             chain.doFilter(req, res);
@@ -44,7 +44,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter  {
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_STRING);
+        String token = request.getHeader(AUTHORIZATION_HEADER_STRING);
         if (token != null) {
             // parse the token.
             DecodedJWT jwt = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
