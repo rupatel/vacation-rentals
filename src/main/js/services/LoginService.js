@@ -1,6 +1,8 @@
 let _singleton = Symbol;
 import {RENTAL_SERVICE_URL,AUTHORIZATION,TOKEN_EXPIRY} from '../constants/AppConstants';
 const LOGIN_URL = RENTAL_SERVICE_URL + '/login';
+import {browserHistory} from 'react-router';
+
 class LoginService{
     constructor(singleToken){
         if(_singleton != _singleton)

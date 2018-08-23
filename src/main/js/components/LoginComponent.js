@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginService from '../services/LoginService';
+import {history} from '../helpers/history';
 
 class LoginComponent extends React.Component{
     constructor(){
@@ -33,6 +34,7 @@ class LoginComponent extends React.Component{
         this.loginService.login(this.state.credential)
             .then(user => {
                 localStorage.setItem('user', user);
+                history.push("/home")
             });
     }
 

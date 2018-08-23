@@ -69,7 +69,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
         res.addHeader(AUTHORIZATION_HEADER_STRING, TOKEN_PREFIX + token);
-        res.addDateHeader(TOKEN_EXPIRATION_HEADER_STRING,  EXPIRATION_TIME);
+        res.addHeader(TOKEN_EXPIRATION_HEADER_STRING, TOKEN_PREFIX + token);
         ObjectMapper mapper = new ObjectMapper();
         com.neu.academic.travel.vacation.rentals.models.user.User user = 
         		credRepo.findByUsername(((User) auth.getPrincipal()).getUsername()).getUser();

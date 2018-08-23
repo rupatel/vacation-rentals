@@ -1,17 +1,19 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+    import {Router, Route, Switch} from 'react-router-dom'
 import RegisterComponent from "../components/RegisterComponent";
 import HomeComponent from "./HomeComponent";
 import LoginComponent from "../components/LoginComponent";
+import {history} from '../helpers/history';
+
 class App extends React.Component{
     render() {
         return (
-            <Router>
-                <div className="container-fluid">
-                    <LoginComponent/>
+            <Router history={history}>
+                <Switch>
                     <Route path="/home" component={HomeComponent}/>
                     <Route path="/sign-up" component={RegisterComponent}/>
-                </div>
+                    <Route path="/" component={LoginComponent}/>
+                </Switch>
             </Router>
         );
     }
