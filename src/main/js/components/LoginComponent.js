@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginService from '../services/LoginService';
 import {history} from '../helpers/history';
-
+import {Link} from "react-router-dom";
 class LoginComponent extends React.Component{
     constructor(){
         super();
@@ -47,6 +47,7 @@ class LoginComponent extends React.Component{
                  <button  onClick={this.login} className="btn btn-primary btn-block" >
                     Login
                  </button>
+                <Link to="/sign-up">SignUp</Link>
             </div>
         );
     }

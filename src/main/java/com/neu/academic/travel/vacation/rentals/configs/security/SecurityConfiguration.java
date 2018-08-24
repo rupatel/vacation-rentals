@@ -1,6 +1,5 @@
 package com.neu.academic.travel.vacation.rentals.configs.security;
 
-import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.SIGN_UP_URL;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.ADD_USER_SERVICE;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.LOGIN_URL;
 import org.springframework.context.annotation.Configuration;
@@ -37,8 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
         .antMatchers(HttpMethod.POST, ADD_USER_SERVICE,"/login").permitAll()
-        .antMatchers(HttpMethod.GET, LOGIN_URL,SIGN_UP_URL,
-        		"/","/login","/built/**","/css/**", "/js/**", "/images/**")
+        .antMatchers(HttpMethod.GET, LOGIN_URL,
+        		"/*.ico","/","/login","/built/**","/css/**", "/js/**", "/images/**")
         .permitAll()
         .anyRequest().authenticated()
         .and()
