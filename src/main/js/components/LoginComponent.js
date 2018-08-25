@@ -47,7 +47,7 @@ class LoginComponent extends React.Component{
                  <button  onClick={this.login} className="btn btn-primary btn-block" >
                     Login
                  </button>
-                <Link to="/sign-up">SignUp</Link>
+                <Link to="/signUp">SignUp</Link>
             </div>
         );
     }

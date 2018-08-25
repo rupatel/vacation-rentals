@@ -11,7 +11,7 @@ class App extends React.Component{
             <Router history={history}>
                 <Switch>
                     <Route path="/home" component={HomeComponent}/>
-                    <Route path="/sign-up" component={RegisterComponent}/>
+                    <Route path="/signUp" component={RegisterComponent}/>
                     <Route path="/" component={LoginComponent}/>
                 </Switch>
             </Router>
