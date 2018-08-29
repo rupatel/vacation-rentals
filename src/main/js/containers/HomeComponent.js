@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ListingCard from '../components/ListingCard';
 class HomeComponent extends React.Component{
 
     render(){

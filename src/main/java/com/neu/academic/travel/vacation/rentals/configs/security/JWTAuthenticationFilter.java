@@ -1,14 +1,13 @@
 package com.neu.academic.travel.vacation.rentals.configs.security;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
-import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.EXPIRATION_TIME;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.AUTHORIZATION_HEADER_STRING;
-import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.TOKEN_EXPIRATION_HEADER_STRING;
+import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.EXPIRATION_TIME;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.SECRET;
+import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.TOKEN_EXPIRATION_HEADER_STRING;
 import static com.neu.academic.travel.vacation.rentals.configs.security.SecurityConstants.TOKEN_PREFIX;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.FilterChain;
