@@ -6,6 +6,7 @@ class HomeComponent extends React.Component{
         return (
             <div className="container-fluid">
                 <h1>Home</h1>
+                <ListingCard/>
             </div>
         );
     }
